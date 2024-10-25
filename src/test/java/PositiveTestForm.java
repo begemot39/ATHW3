@@ -33,8 +33,8 @@ public class PositiveTestForm {
         $$("button").find(Condition.exactText("Забронировать")).click();
 
         $(Selectors.withText("Успешно!")).shouldBe(Condition.visible, Duration.ofSeconds(15));
-        $(Selectors.withText("Встреча успешно забронирована на")).shouldBe(Condition.visible, Duration.ofSeconds(15));
-        $(Selectors.withText( date )).shouldBe(Condition.visible, Duration.ofSeconds(15));
+        $("[data-test-id='notification'] .notification__content").shouldBe(Condition.visible, Duration.ofSeconds(15));
+        $("[data-test-id='notification'] .notification__content").shouldHave(Condition.text("Встреча успешно забронирована на " + date), Duration.ofSeconds(15));
     }
 
 }
