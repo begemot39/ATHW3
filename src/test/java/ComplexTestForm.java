@@ -44,8 +44,9 @@ public class ComplexTestForm {
         int stringToNumber = Integer.parseInt(dayToString);// Преобразовать строку последнего элемента в число.
         if ( sumOfDays > stringToNumber ) { // Сравнивает сумму дней и максимальное количество дней в месяце
             $("[data-step='1']").click(); // Если сумма дней больше количества дней в месяце, переворачиваем страницу календаря и выбираем элемент с датой в следующем месяце.
-            $$( ".calendar__day[data-day]").find(Condition.exactText(generateDate(days, "d"))).click();
+
         }
+        $$( ".calendar__day[data-day]").find(Condition.exactText(generateDate(days, "d"))).click();
         $("[data-test-id='name'] [name='name']").setValue("Иван Иванов");
         $("[data-test-id='phone'] [name='phone']").setValue("+79999999999");
         $("[data-test-id='agreement']").click();
