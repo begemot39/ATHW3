@@ -26,12 +26,6 @@ public class ComplexTestForm {
         return day + days;
     }
 
-    public String getDateDay( int days ) { // Вернуть только день из даты назначенной пользователем.
-
-        LocalDate currentDate = LocalDate.now();
-        return String.valueOf(currentDate.plusDays( days ).getDayOfMonth());
-    }
-
     @Test
     public void testComplexElementForm() {
 
@@ -48,12 +42,10 @@ public class ComplexTestForm {
         SelenideElement numOfMaxDays = $$(".calendar__day").filter(Condition.attribute("data-day")).last(); // Получить последний элемент из коллекции дней месяца.
         String dayToString =  numOfMaxDays.getText(); // Преобразовать числовое значение последнего элемента из коллекции выше в строку.
         int stringToNumber = Integer.parseInt(dayToString);// Преобразовать строку последнего элемента в число.
-        $(Selectors.byText(getDateDay(  days ))).click();
         if ( sumOfDays > stringToNumber ) { // Сравнивает сумму дней и максимальное количество дней в месяце
             $("[data-step='1']").click(); // Если сумма дней больше количества дней в месяце, переворачиваем страницу календаря и выбираем элемент с датой в следующем месяце.
-            $$( ".calendar__day[data-day]").find(Condition.exactText(getDateDay( days ))).click();
+            $$( ".calendar__day[data-day]").find(Condition.exactText(generateDate(days, "d"))).click();
         }
-
         $("[data-test-id='name'] [name='name']").setValue("Иван Иванов");
         $("[data-test-id='phone'] [name='phone']").setValue("+79999999999");
         $("[data-test-id='agreement']").click();

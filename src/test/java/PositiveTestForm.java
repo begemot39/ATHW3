@@ -2,6 +2,7 @@ import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Selectors;
 import com.codeborne.selenide.Selenide;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.Keys;
 
 import java.time.Duration;
 import java.time.LocalDate;
@@ -21,11 +22,12 @@ public class PositiveTestForm {
     @Test
     public void positiveFormTest() { // Форма заполнена корректными данными
 
-        int daysToAdd = 3;
+        int daysToAdd = 5;
         String date = generateDate(daysToAdd, "dd.MM.yyyy" );
 
         Selenide.open("http://localhost:9999/");
         $("[data-test-id='city'] [placeholder='Город']").setValue( "Москва" );
+        $("[data-test-id='date'] [placeholder='Дата встречи']").doubleClick().sendKeys(Keys.BACK_SPACE);
         $("[data-test-id='date'] [placeholder='Дата встречи']").setValue( date );
         $("[data-test-id='name'] [name='name']").setValue("Иван Иванов");
         $("[data-test-id='phone'] [name='phone']").setValue("+79999999999");
